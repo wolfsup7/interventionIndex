@@ -36,25 +36,8 @@
     
     
     // - - - - - - - - Useful variables - - - - - - - - - - -
-    const Category = require('./models/schema.js')
-    const Intervention = require('./models/schema.js')
-//find the sub----------------------------------
+    const Intervention = require('./models/schema.js');
 
-
-//add the subdoc to an array----------------
-// const Parent = mongoose.model('Parent');
-// const parent = new Parent();
-
-// create a comment
-// parent.children.push({ name: 'Liesl' });
-// const subdoc = parent.children[0];
-// console.log(subdoc) // { _id: '501d86090d371bab2c0341c5', name: 'Liesl' }
-// subdoc.isNew; // true
-
-// parent.save(function (err) {
-//     if (err) return handleError(err)
-//     console.log('Success!');
-// });
 
 // home page
     app.get('/home', (req, res)=>{
@@ -71,7 +54,7 @@
         res.render('home.ejs')
     });
     
-// classes list page
+// categories list page
     app.get('/index', (req, res)=>{
     //     Classes.find({}).exec((error, classData)=>{ // ATTENTION TO SORT .sort({id:1})
             res.render('index.ejs')
@@ -86,7 +69,7 @@
     //     res.render('add.ejs')
     // });
 
-// // class info page
+// // ---------------interventionlist pages
     app.get('/index/int/', (req, res)=>{
 //         Classes.find({_id:req.params.id}, (error, classRoom)=>{
 //             console.log(classRoom)
@@ -112,20 +95,62 @@
 
 //----------------Seed----------------------------
 app.get('/home/seed', (req, res)=>{
-    Category.create(
+    Intervention.create(
         [
             {
-            name: "Classroom Management",
-            intervensions: ["High-Probability Requests", "Choice Making", "Behavior-Specific Praise"]
-            }, 
-            {
-            name: "Diversity and Inclusion",
-            intervensions: ["Culturally Responsive Teaching", "Managing Classroom Design Environments", "Natural Environment Teaching and Inclusion"]
-            }, 
-            {
-            name: "Individualized Education",
-            intervensions: ["Peer-Mediated Instruction and Intervention", "Self-Management", "Pivotal Response Training"]
-            }
+                name: "High-Probability Requests", 
+                category: "Classroom Management",
+                outcomes: 'String',
+                resources: 'String'
+                }, 
+                {
+                name: "Choice Making", 
+                category: "Classroom Management",
+                outcomes: 'String',
+                resources: 'String'
+                }, 
+                {
+                name: "Behavior-Specific Praise", 
+                category: "Classroom Management",
+                outcomes: 'String',
+                resources: 'String'
+                },
+                {
+                name: "Culturally Responsive Teaching", 
+                category: "Diversity and Inclusion",
+                outcomes: 'String',
+                resources: 'String'
+                },
+                {
+                name: "Managing Classroom Design Environments", 
+                category: "Diversity and Inclusion",
+                outcomes: 'String',
+                resources: 'String'
+                },
+                {
+                name: "Natural Environment Teaching and Inclusion", 
+                category: "Diversity and Inclusion",
+                outcomes: 'String',
+                resources: 'String'
+                },
+                {
+                name: "Peer-Mediated Instruction and Intervention", 
+                category: "Individualized Education",
+                outcomes: 'String',
+                resources: 'String'
+                },
+                {
+                name: "Self-Management", 
+                category: "Individualized Education",
+                outcomes: 'String',
+                resources: 'String'
+                },
+                {
+                name: "Pivotal Response Training", 
+                category: "Individualized Education",
+                outcomes: 'String',
+                resources: 'String'
+                }
         ], 
         (err, Category)=>{
             res.redirect('/home');
@@ -211,7 +236,7 @@ app.get('/home/seed', (req, res)=>{
 //         });
 //     });
 
-mongoose.connect('mongodb://localhost:27017/basiccrud', () => {
+mongoose.connect('mongodb://localhost:27017/interventions', () => {
     console.log('The connection with mongod is established');
 })
 
