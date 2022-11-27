@@ -38,6 +38,7 @@
     
     // - - - - - - - - Useful variables - - - - - - - - - - -
     const interventions = require('./models/schema.js');
+const intervention = require('./models/intervention.js');
 
 
 // home page
@@ -60,28 +61,28 @@ app.get('/index', (req, res)=>{
     res.render('index.ejs')
 });
 
-app.get('/index/cm', (req, res)=>{
-    res.render('cm.ejs')
+app.get('/index/int-cm', (req, res)=>{
+    interventions.find({category: "Classroom Management"}).exec((error, intervention)=>{ 
+        res.render('cm.ejs',
+        {
+            Interventions:intervention
+        })
+    });
 });
 
-app.get('/index/di', (req, res)=>{
+app.get('/index/int-di', (req, res)=>{
+    res.render('di.ejs')
+})
+
+app.get('/index/int-ie', (req, res)=>{
     res.render('ie.ejs')
 });
 
-// categories list page
-    app.get('/index/int/', (req, res)=>{
-        interventions.find({}).exec((error, intervention)=>{ 
-            res.render('cm.ejs',
-            {
-                Interventions:intervention
-            })
-        });
-    });
 
 // adding a new intervention page
-//    app.get('/index/int/add', (req, res)=>{
-//        res.render('add.ejs')
-//    });
+    app.get('/index/int/add', (req, res)=>{
+        res.render('add.ejs')
+    });
 
 // // ---------------interventionlist pages
 //    app.get('/index/int/', (req, res)=>{
@@ -109,7 +110,7 @@ app.get('/index/di', (req, res)=>{
 
 //----------------Seed----------------------------
 app.get('/home/seed', (req, res)=>{
-    Intervention.create(
+    interventions.create(
         [
             {
                 name: "High-Probability Requests", 

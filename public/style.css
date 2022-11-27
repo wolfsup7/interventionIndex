@@ -1,6 +1,8 @@
-.categories {
-    display: flex;
-    flex-direction: row;
-    justify-content: space-evenly;
-    height: 80%;
+header {
+    background-color: lightblue;
 }
+
+body {
+    background-color: aliceblue;
+}
+
