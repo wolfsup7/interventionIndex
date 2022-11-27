@@ -33,10 +33,11 @@
     // app.use(express.static('public'));
     app.use(express.urlencoded({extended: true}));
     app.use(methodOverride('_method'));
+    app.use(express.static('public'));
     
     
     // - - - - - - - - Useful variables - - - - - - - - - - -
-    const Intervention = require('./models/schema.js');
+    const interventions = require('./models/schema.js');
 
 
 // home page
@@ -53,33 +54,46 @@
     //     });
         res.render('home.ejs')
     });
-    
+
+//Index Categories ------------------------
+app.get('/index', (req, res)=>{
+    res.render('index.ejs')
+});
+
+app.get('/index/cm', (req, res)=>{
+    res.render('cm.ejs')
+});
+
+app.get('/index/di', (req, res)=>{
+    res.render('ie.ejs')
+});
+
 // categories list page
-    app.get('/index', (req, res)=>{
-    //     Classes.find({}).exec((error, classData)=>{ // ATTENTION TO SORT .sort({id:1})
-            res.render('index.ejs')
-    //, {
-    //             classData
-    //         });
-    //     });
+    app.get('/index/int/', (req, res)=>{
+        interventions.find({}).exec((error, intervention)=>{ 
+            res.render('cm.ejs',
+            {
+                Interventions:intervention
+            })
+        });
     });
-    
-// adding a new class page
-    // app.get('/classes/add', (req, res)=>{
-    //     res.render('add.ejs')
-    // });
+
+// adding a new intervention page
+//    app.get('/index/int/add', (req, res)=>{
+//        res.render('add.ejs')
+//    });
 
 // // ---------------interventionlist pages
-    app.get('/index/int/', (req, res)=>{
+//    app.get('/index/int/', (req, res)=>{
 //         Classes.find({_id:req.params.id}, (error, classRoom)=>{
 //             console.log(classRoom)
-            res.render('int.ejs')
+//           res.render('int.ejs')
 //            , {
 //                 classRoom: classRoom,
 //                 id: req.params.id
 //             });
 //        });
-    });
+//    });
 
 // // edit page
     app.get('/index/int/edit', (req, res)=>{

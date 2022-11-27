@@ -1,11 +1,12 @@
-const mongoose = require('mongoose')
-const Schema = mongoose.Schema
+const mongoose = require('mongoose');
 
-const interventionSchema = new Schema({
+const interventionSchema = new mongoose.Schema({
     name: 'String', 
     category: 'String',
     outcomes: 'String',
     resources: 'String'
 });
 
-module.exports = mongoose.model('intervention', interventionSchema)
+const intCollection = mongoose.model('Intervention', interventionSchema);
+
+module.exports = intCollection;
