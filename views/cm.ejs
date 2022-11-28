@@ -40,20 +40,20 @@
                     <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
                 </div>
                 <ul class="list-group list-group-flush" href="/index/<%=Interventions[i].id%>">
-                    <li class="list-group-item"><button onclick="showOutcomes()">Outcomes</button>
+                    <li class="list-group-item"><button class="btn btn-info" onclick="showOutcomes()">Outcomes</button>
                         <div id="outcomes" href="/index/<%=Interventions[i].id%>" style="display: none;">
                             <p><%=Interventions[i].outcomes%></p>
                         </div>
                     </li>
-                    <li class="list-group-item"><button onclick="showResources()">Resources</button>
+                    <li class="list-group-item"><button class="btn btn-info" onclick="showResources()">Resources</button>
                         <div id="resources" href="/index/<%=Interventions[i].id%>" style="display: none;">
                             <p><%=Interventions[i].resources%></p>
                         </div>
                     </li>
                 </ul>
                 <div class="card-body" href="/index/<%=Interventions[i].id%>" id="buttons">
-                    <button><a href="/index/int/<%=Interventions[i].id%>/edit" class="card-link">Edit</a></button>
-                    <button id="add"><a href="#" class="card-link">+ add to myList</a></button>
+                    <button class="btn"><a href="/index/int/<%=Interventions[i].id%>/edit" class="card-link">Edit</a></button>
+                    <button id="add" class="btn"><a href="#" class="card-link">+ add to myList</a></button>
                 </div>
                 <div class="card-body" href="/index/<%=Interventions[i].id%>">
                     <form action="/index/int/<%=Interventions[i].id%>?_method=DELETE" method="POST">
@@ -65,21 +65,27 @@
         <% } %>
     </div>
 </body>
-<!-- function showOutcomes() {
-    const outcome = document.getElementById("outcomes");
-        if (outcome.style.display === "none") {
-            outcome.style.display = "block";
-        } else {
-            outcome.style.display = "none";
-        }
-}
-function showResources() {
-    const resource = document.getElementById("resources");
-        if (resource.style.display === "none") {
-            resource.style.display = "block";
-        } else {
-            resource.style.display = "none";
-        }
-} -->
+<script>
+    function showOutcomes() {
+        const outcome = document.getElementById("outcomes");
+            if (outcome.style.display === "none") {
+                outcome.style.display = "block";
+            } else {
+                outcome.style.display = "none";
+            }
+    }
+    function showResources() {
+        const resource = document.getElementById("resources");
+            if (resource.style.display === "none") {
+                resource.style.display = "block";
+            } else {
+                resource.style.display = "none";
+            }
+    }
+</script>
+</div>
+</body>
+</div>
+</html>
 </div>
 </html>

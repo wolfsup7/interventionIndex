@@ -1,26 +1,4 @@
 
-//  = = = = = = = = = = = = STRUCTURE = = = = = = = = = = = = = = =
-    // - - - - -  app.GET - - - - -
-        // Home Page 
-        // Intervention categories Index
-        // Intervention show
-        // Add an Intervention
-        // Edit - able to change a certain portion of the intervention or add notes
-
-    // - - - - - - app. - - - - - - 
-        // POST - for creating
-        // PUT -for updating
-        // DELETE - for deleting intervention 
-
-    // - - - - - - files - - - - -  
-        // intervention categories
-        // interventions array
-        // schema - make 2 , mongoose sub documents
-        // server
-        // ejs (5)
-
-//  = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = 
-
 // - - - - - - - - - - Set Up - - - - - - - - - - - - - - 
 // npm init
     // npm install express ejs mongoose method-override
@@ -38,7 +16,6 @@
     
     // - - - - - - - - Useful variables - - - - - - - - - - -
     const interventions = require('./models/schema.js');
-
 
 
 // -----------------------ROUTES------------------------------------
@@ -179,49 +156,7 @@ app.put('/index/int/:id', (req, res)=>{
     });
 });
 
-
-    // editing class
-//     app.put('/classes/:id', (req, res)=>{
-//         let student1 = {
-//             name: req.body.name1,
-//             age: Number(req.body.age1),
-//             readingLevel: req.body.readingLevel1,
-//             mathLevel: req.body.mathLevel1,}
-//         let student2 ={
-//             name: req.body.name2,
-//             age: Number(req.body.age2),
-//             readingLevel: req.body.readingLevel2,
-//             mathLevel: req.body.mathLevel2,}
-//         let student3 ={
-//             name: req.body.name3,
-//             age: Number(req.body.age3),
-//             readingLevel: req.body.readingLevel3,
-//             mathLevel: req.body.mathLevel3,}
-//         let student4 ={
-//             name: req.body.name4,
-//             age: Number(req.body.age4),
-//             readingLevel: req.body.readingLevel4,
-//             mathLevel: req.body.mathLevel4,}
-//         let student5 ={
-//             name: req.body.name5,
-//             age: Number(req.body.age5),
-//             readingLevel: req.body.readingLevel5,
-//             mathLevel: req.body.mathLevel5,}
-//         req.body.students = [student1, student2, student3, student4, student5]
-//     console.log(req.body)
-//     Classes.findById(req.params.id).update(req.body, (error, updateClass)=>{
-//         console.log(updateClass);
-//         res.redirect('/classes')
-//     });
-// });
-
-// // removing a class
-//     app.delete('/classes/:id', (req, res)=>{
-//         Classes.findById(req.params.id).deleteOne((err, data)=>{
-//             res.redirect('/classes');
-//         });
-//     });
-
+//-------------------footer/connections---------------------
 mongoose.connect('mongodb://localhost:27017/interventions', () => {
     console.log('The connection with mongod is established');
 })
