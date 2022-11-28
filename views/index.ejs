@@ -8,33 +8,32 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/css/bootstrap.min.css" integrity="sha384-zCbKRCUGaJDkqS1kPbPd7TveP5iyJE0EjAuZQTgFLD2ylzuqKfdKlfG/eSrtxUkn" crossorigin="anonymous">
     <link rel="stylesheet" href="style.css">
 </head>
-<div class = "container">
-<body>
-    <header>
-        <nav class="navbar navbar-expand-lg navbar-light bg-light">
-            <a class="navbar-brand" href="#">Forge</a>
-            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
-            </button>
-            <div class="collapse navbar-collapse" id="navbarNav">
-                <ul class="navbar-nav">
+<div class="container-fluid">
+    <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
+        <a class="navbar-brand" href="#">Forge</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav">
                 <li class="nav-item">
                     <a class="nav-link" href="/home">Home</a>
                 </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="#">Sign-In</a>
-                </li>
-                </ul>
-            </div>
-        </nav>
-    </header>
+            <li class="nav-item">
+                <a class="nav-link" href="/index">Categories</a>
+            </li>
+            </ul>
+        </div>
+    </nav>
+<body style="background-color:aliceblue;">
+    <div>
+    <h1>Intervention Categories</h1>
     <div class="row">
         <div class="col-sm">
         <div class="card">
             <div class="card-body">
                 <h5 class="card-title">Classroom Management</h5>
                 <p class="card-text">Set your classroom tone with confidence. A leader knows, goes, and shows.  </p>
-                <br>
                 <br>
                 <a href="/index/int-cm" class="btn btn-success">Classroom Management Skills</a>
             </div>
@@ -45,7 +44,6 @@
             <div class="card-body">
                 <h5 class="card-title">Diversity and Inclusion</h5>
                 <p class="card-text">Equitable education depends on representation and integration.</p>
-                <br>
                 <br>
                 <a href="/index/int-di" class="btn btn-success">Diversity and Inclusion Practices</a>
             </div>
@@ -60,6 +58,7 @@
             </div>
         </div>
         </div>
+    </div>
     </div>
 </body>
 </div>
