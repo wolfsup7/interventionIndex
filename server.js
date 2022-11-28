@@ -38,25 +38,14 @@
     
     // - - - - - - - - Useful variables - - - - - - - - - - -
     const interventions = require('./models/schema.js');
-const intervention = require('./models/intervention.js');
 
 
-// home page
-    app.get('/home', (req, res)=>{
-    //     // insert previous DATA if collection is empty
-    //     db.collection('classes').count(function(err, count) {
-    //         console.log(err);
-    //         console.log(count);
-    //         if( count < 1) {
-    //             Classes.create(Data);
-    //         } else {
-    //         console.log('Nothing was done')
-    //         }
-    //     });
-        res.render('home.ejs')
-    });
 
-//Index Categories ------------------------
+// -----------------------ROUTES------------------------------------
+app.get('/home', (req, res)=>{
+    res.render('home.ejs')
+});
+
 app.get('/index', (req, res)=>{
     res.render('index.ejs')
 });
@@ -71,42 +60,39 @@ app.get('/index/int-cm', (req, res)=>{
 });
 
 app.get('/index/int-di', (req, res)=>{
-    res.render('di.ejs')
+    interventions.find({category: "Diversity and Inclusion"}).exec((error, intervention)=>{ 
+        res.render('di.ejs',
+        {
+            Interventions:intervention
+        })
+    });
 })
 
 app.get('/index/int-ie', (req, res)=>{
-    res.render('ie.ejs')
-});
-
-
-// adding a new intervention page
-    app.get('/index/int/add', (req, res)=>{
-        res.render('add.ejs')
+    interventions.find({category: "Individualized Education"}).exec((error, intervention)=>{ 
+        res.render('ie.ejs',
+        {
+            Interventions:intervention
+        })
     });
-
-// // ---------------interventionlist pages
-//    app.get('/index/int/', (req, res)=>{
-//         Classes.find({_id:req.params.id}, (error, classRoom)=>{
-//             console.log(classRoom)
-//           res.render('int.ejs')
-//            , {
-//                 classRoom: classRoom,
-//                 id: req.params.id
-//             });
-//        });
-//    });
-
-// // edit page
-    app.get('/index/int/edit', (req, res)=>{
-//         Classes.find({_id:req.params.id}, (error, classRoom)=>{
-//             console.log(classRoom)
-            res.render('edit.ejs')
-            //, {
-//             classRoom: classRoom,
-//             id: req.params.id
-//         });
-//     });
 });
+
+app.get('/index/int/add', (req, res)=>{
+    res.render('add.ejs')
+});
+
+app.get('/index/int/:id/edit', (req, res)=>{
+    interventions.findById(req.params.id, (err, foundIntervention)=>{ 
+        res.render(
+    		'edit.ejs',
+    		{
+    			intervention: foundIntervention
+    		}
+    	);
+    });
+});
+
+
 
 //----------------Seed----------------------------
 app.get('/home/seed', (req, res)=>{
@@ -175,39 +161,24 @@ app.get('/home/seed', (req, res)=>{
 
 
 // - - - - - - - - Pages Actions - - - - - - - - - - -
-// adding new class
-//     app.post('/classes', (req, res)=>{
-//         let student1 = {
-//             name: req.body.name1,
-//             age: Number(req.body.age1),
-//             readingLevel: req.body.readingLevel1,
-//             mathLevel: req.body.mathLevel1,}
-//         let student2 ={
-//             name: req.body.name2,
-//             age: Number(req.body.age2),
-//             readingLevel: req.body.readingLevel2,
-//             mathLevel: req.body.mathLevel2,}
-//         let student3 ={
-//             name: req.body.name3,
-//             age: Number(req.body.age3),
-//             readingLevel: req.body.readingLevel3,
-//             mathLevel: req.body.mathLevel3,}
-//         let student4 ={
-//             name: req.body.name4,
-//             age: Number(req.body.age4),
-//             readingLevel: req.body.readingLevel4,
-//             mathLevel: req.body.mathLevel4,}
-//         let student5 ={
-//             name: req.body.name5,
-//             age: Number(req.body.age5),
-//             readingLevel: req.body.readingLevel5,
-//             mathLevel: req.body.mathLevel5,}
-//         req.body.students = [student1, student2, student3, student4, student5]
-//     Classes.create(req.body, (error, newClass)=>{
-//         console.log(newClass);
-//         res.redirect('/classes')
-//     });
-// });
+app.post('/index/int', (req, res)=>{
+    interventions.create(req.body, (error, addedIntervention) => {
+        res.redirect('/index');
+    })
+});
+
+app.delete('/index/int/:id', (req, res)=>{
+    interventions.findByIdAndRemove(req.params.id, (err, data) => {
+        res.redirect('/index');
+    });
+});
+
+app.put('/index/int/:id', (req, res)=>{
+    interventions.findByIdAndUpdate(req.params.id, req.body, {new:true}, (err, updatedModel)=>{
+        res.redirect('/index');
+    });
+});
+
 
     // editing class
 //     app.put('/classes/:id', (req, res)=>{

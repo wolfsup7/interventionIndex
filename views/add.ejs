@@ -9,7 +9,7 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/css/bootstrap.min.css" integrity="sha384-zCbKRCUGaJDkqS1kPbPd7TveP5iyJE0EjAuZQTgFLD2ylzuqKfdKlfG/eSrtxUkn" crossorigin="anonymous">
 </head>
 <div class = "container">
-<body>
+<body style="background-color:aliceblue;">
     <header>
         <nav class="navbar navbar-expand-lg navbar-light bg-light">
             <a class="navbar-brand" href="#">Forge</a>
@@ -32,12 +32,29 @@
         </nav>
     </header>
     <h3>Add Intervention</h3>
-    <form action="/home/seed" method="POST">
-        Name: <input type="text" name="name" /><br/>
-        Outcomes: <input type="text" name="outcomes" /><br/>
-        Resources: <input type="checkbox" name="resources" /><br/>
-        <input type="submit" value="Create Fruit"/>
+    <form action="/index/int" method="POST">
+        <div class="form-group">
+            <label for="exampleFormControlInput1">Intervention Name</label>
+            <input type="text" name="name" class="form-control" id="exampleFormControlInput1">
+        </div>
+        <div class="form-group">
+            <label for="exampleFormControlSelect1">Category Select</label>
+            <select type="text" name="category" class="form-control" id="exampleFormControlSelect1">
+                <option>Classroom Management</option>
+                <option>Diversity and Inclusion</option>
+                <option>individualized Education</option>
+            </select>
+        </div>
+        <div class="form-group">
+            <label for="exampleFormControlTextarea1">Outcomes</label>
+            <textarea type="text" name="outcomes" class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
+        </div>
+        <div class="form-group">
+            <label for="exampleFormControlTextarea1">Resources</label>
+            <textarea type="text" name="resources" class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
+        </div>
+        <input type="submit" value="Add Intervention"/>
     </form>
-</div>
 </body>
+</div>
 </html>
